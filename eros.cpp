@@ -1,4 +1,4 @@
-// EROS.cpp : main project file.
+п»ї// EROS.cpp : main project file.
 
 #include "stdafx.h"
 #include "iostream"
@@ -116,7 +116,7 @@ double Date_JD (int Year_, int Month_, int Day_, int Hour_, int Minute_, double 
     data=data+(Hour_/24.)+(Minute_/1440.)+(Second_/86400.);
 	return (data);
 }
-//вычисляет по календарной дате юлианскую дату
+//РІС‹С‡РёСЃР»СЏРµС‚ РїРѕ РєР°Р»РµРЅРґР°СЂРЅРѕР№ РґР°С‚Рµ СЋР»РёР°РЅСЃРєСѓСЋ РґР°С‚Сѓ
 void Date_Grig (double Grig_time)
 {
 	int ich, icm, ice;
@@ -162,7 +162,7 @@ void Date_Grig (double Grig_time)
 
 	Year=ice; Month=icm; Day=ich; Hour=h; Minute=m; Second=s;
 } 
-//вычисляет по юлианской дате календарную дату
+//РІС‹С‡РёСЃР»СЏРµС‚ РїРѕ СЋР»РёР°РЅСЃРєРѕР№ РґР°С‚Рµ РєР°Р»РµРЅРґР°СЂРЅСѓСЋ РґР°С‚Сѓ
 void eph_open()
 {	 
 	ifstream fine;
@@ -182,7 +182,7 @@ void eph_open()
 	eph_count=eph_count-1;
 	fine.close();
 } 
-//Открывает список эфемеридных поправок
+//РћС‚РєСЂС‹РІР°РµС‚ СЃРїРёСЃРѕРє СЌС„РµРјРµСЂРёРґРЅС‹С… РїРѕРїСЂР°РІРѕРє
 double eph_time(double epher)
 {
 	eph_open();
@@ -220,7 +220,7 @@ double eph_time(double epher)
 	eph_time=J0+deph0/(60*60*24);
 	return(eph_time);
 }
- //переводит юлианскую дату к эфемеридной шкале
+ //РїРµСЂРµРІРѕРґРёС‚ СЋР»РёР°РЅСЃРєСѓСЋ РґР°С‚Сѓ Рє СЌС„РµРјРµСЂРёРґРЅРѕР№ С€РєР°Р»Рµ
 double star_time(double time_star)
 {
 	double tt;
@@ -229,7 +229,7 @@ double star_time(double time_star)
 	s_time=(24110.54841+8640184.812866*tt+0.0931048*tt*tt-0.00000621*tt*tt*tt);
 	return(s_time);
 }
-//переводит юлианскую дату в звездное время
+//РїРµСЂРµРІРѕРґРёС‚ СЋР»РёР°РЅСЃРєСѓСЋ РґР°С‚Сѓ РІ Р·РІРµР·РґРЅРѕРµ РІСЂРµРјСЏ
 string read_boul(string name_ast)
 {   
 	ifstream fin_cat;
@@ -256,7 +256,7 @@ string read_boul(string name_ast)
 	fin_cat.close();
 	return str_cat;
 }
-//открывает каталог Боуэлла
+//РѕС‚РєСЂС‹РІР°РµС‚ РєР°С‚Р°Р»РѕРі Р‘РѕСѓСЌР»Р»Р°
 double boul_abs(string str_cat) 
 {   double abs=0; 
 	abs=abs+0.1*(str_cat.at(45)-48); 
@@ -266,7 +266,7 @@ double boul_abs(string str_cat)
 	if(str_cat.at(42)!=32)
 	{abs=abs+10.*(str_cat.at(42)-48);}
 	return abs;}
-//звездная величина из боуэлла
+//Р·РІРµР·РґРЅР°СЏ РІРµР»РёС‡РёРЅР° РёР· Р±РѕСѓСЌР»Р»Р°
 double boul_osc(string str_cat)
 {   int y_start, m_start, d_start;
 	y_start=0;
@@ -280,7 +280,7 @@ double boul_osc(string str_cat)
 	d_start=(str_cat.at(112)-48)*10+str_cat.at(113)-48;
 	return Date_JD(y_start, m_start, d_start, 0, 0, 0);
 }
-//момент времени из боуэлла
+//РјРѕРјРµРЅС‚ РІСЂРµРјРµРЅРё РёР· Р±РѕСѓСЌР»Р»Р°
 double boul_axis(string str_cat)
 {   double axis=0;
 	int r=-1, j;
@@ -289,7 +289,7 @@ double boul_axis(string str_cat)
 	 r--;}
 	axis=axis+(str_cat.at(171)-48);
 	return axis;}
-//большая полуось из боуэлла
+//Р±РѕР»СЊС€Р°СЏ РїРѕР»СѓРѕСЃСЊ РёР· Р±РѕСѓСЌР»Р»Р°
 double boul_i(string str_cat)
 {   double i=0;
 	int r=-1, j=0;
@@ -300,7 +300,7 @@ double boul_i(string str_cat)
 	if(str_cat.at(148)!=32)
 	{i=i+10.*(str_cat.at(148)-48);}
 	return i;}
-//наклонение из боуэлла
+//РЅР°РєР»РѕРЅРµРЅРёРµ РёР· Р±РѕСѓСЌР»Р»Р°
 double boul_e(string str_cat)
 {   double e=0;
 	int r=-1, j;
@@ -309,7 +309,7 @@ double boul_e(string str_cat)
 	 r--;}
 	e=e+int(str_cat.at(158)-48);
 	return e;}
-//эксцентриситет из боуэлла
+//СЌРєСЃС†РµРЅС‚СЂРёСЃРёС‚РµС‚ РёР· Р±РѕСѓСЌР»Р»Р°
 double boul_arg(string str_cat)
 {   double arg=0;
 	int r=-1, j;
@@ -322,7 +322,7 @@ double boul_arg(string str_cat)
 	if(str_cat.at(126)!=32)
 	{arg=arg+100.*(str_cat.at(126)-48);}
 	return arg;}
-//аргумент перицентра из боуэлла
+//Р°СЂРіСѓРјРµРЅС‚ РїРµСЂРёС†РµРЅС‚СЂР° РёР· Р±РѕСѓСЌР»Р»Р°
 double boul_anomaly(string str_cat)
 {   double anomaly=0;
 	int r=-1, j;
@@ -335,7 +335,7 @@ double boul_anomaly(string str_cat)
 	if(str_cat.at(115)!=32)
 	{anomaly=anomaly+100.*(str_cat.at(115)-48);}
 	return anomaly;}
-//средняя аномалия из боуэлла
+//СЃСЂРµРґРЅСЏСЏ Р°РЅРѕРјР°Р»РёСЏ РёР· Р±РѕСѓСЌР»Р»Р°
 double boul_knot(string str_cat)
 {   double knot=0;
 	int r=-1, i;
@@ -348,7 +348,7 @@ double boul_knot(string str_cat)
 	if(str_cat.at(138)!=32)
 	{knot=knot+10.*(str_cat.at(138)-48);}
 	return knot;}
-//долгота восходящего узла из боуэлла
+//РґРѕР»РіРѕС‚Р° РІРѕСЃС…РѕРґСЏС‰РµРіРѕ СѓР·Р»Р° РёР· Р±РѕСѓСЌР»Р»Р°
 double boul_g(string str_cat)
 {
 double g=0;
@@ -362,7 +362,7 @@ r--;
 g=g+(str_cat.at(49)-48);
 return g;
 }
-//параметр G из боуэлла
+//РїР°СЂР°РјРµС‚СЂ G РёР· Р±РѕСѓСЌР»Р»Р°
 string read_observatory(string name_num)
 {   ifstream fin_spisok;
 	fin_spisok.open("In\\obser.dat");
@@ -381,7 +381,7 @@ string read_observatory(string name_num)
 		r=0; }
 	fin_spisok.close();
 	return str_spisok;}
-//Открывает каталог обсерваторий
+//РћС‚РєСЂС‹РІР°РµС‚ РєР°С‚Р°Р»РѕРі РѕР±СЃРµСЂРІР°С‚РѕСЂРёР№
 double names_lon(string str_spisok)
 {   double lon=0;
 	if(str_spisok.at(4)!=32)
@@ -395,7 +395,7 @@ double names_lon(string str_spisok)
 		{lon=lon+pow(10.,r)*(str_spisok.at(j)-48);}
 		r--;}
 	return lon;}
-//Считывает первую координату из каталога Обс
+//РЎС‡РёС‚С‹РІР°РµС‚ РїРµСЂРІСѓСЋ РєРѕРѕСЂРґРёРЅР°С‚Сѓ РёР· РєР°С‚Р°Р»РѕРіР° РћР±СЃ
 double names_alt(string str_spisok)
 {   double alt=0;
 	alt=alt+10*(str_spisok.at(14)-48);
@@ -405,7 +405,7 @@ double names_alt(string str_spisok)
 		{alt=alt+pow(10.,r)*(str_spisok.at(j)-48);}
 		r--;}
 	return alt;}
-//Считывает вторую координату из каталога Обс
+//РЎС‡РёС‚С‹РІР°РµС‚ РІС‚РѕСЂСѓСЋ РєРѕРѕСЂРґРёРЅР°С‚Сѓ РёР· РєР°С‚Р°Р»РѕРіР° РћР±СЃ
 double names_hren(string str_spisok)
 {   double hren=0;
 	hren=hren+10*(str_spisok.at(24)-48);
@@ -417,7 +417,7 @@ double names_hren(string str_spisok)
 	if(str_spisok.at(23)==45)
 	{hren=hren*(-1);}
 	return hren;}
-//Считывает третью координату из каталога Обс
+//РЎС‡РёС‚С‹РІР°РµС‚ С‚СЂРµС‚СЊСЋ РєРѕРѕСЂРґРёРЅР°С‚Сѓ РёР· РєР°С‚Р°Р»РѕРіР° РћР±СЃ
 void createfondbin(){
 	char * savePathForHeader = "In\\header.bin"; 
 	char * savePathForData = "In\\data.bin";
@@ -455,7 +455,7 @@ void createfondbin(){
 		strcat(DeAcsessor::PathToAssembly(), "\\read405\\ascp2180.405" ),
 		strcat(DeAcsessor::PathToAssembly(), "\\read405\\ascp2200.405" )};
 		DeAcsessor^ acs = gcnew DeAcsessor(pathtoAsciiheader,31,&asciiData[0],savePathForData,savePathForHeader);}
-//создает бинарные файлы каталогов
+//СЃРѕР·РґР°РµС‚ Р±РёРЅР°СЂРЅС‹Рµ С„Р°Р№Р»С‹ РєР°С‚Р°Р»РѕРіРѕРІ
 const int N=100;
 void read_obs(ifstream&fin,double data_ul[],double del[],double al[],double abs[],string obs[],int&n,double s_n[],double s_x[],double s_y[],double s_z[])
 {
@@ -634,13 +634,13 @@ void read_obs(ifstream&fin,double data_ul[],double del[],double al[],double abs[
 	}
 	
 }
-//работает с файлом наблюдений	
+//СЂР°Р±РѕС‚Р°РµС‚ СЃ С„Р°Р№Р»РѕРј РЅР°Р±Р»СЋРґРµРЅРёР№	
 void gelio_to_planet (double *X, double *V, double *mass_coor)
 {int i;
  for(i=0; i<3; i++)
  {planet_centric[i]=X[i]-mass_coor[i];
   planet_centric[i+3]=V[i]-mass_coor[i+3];}}
-//переводит из гелиоцентрической в планетоцентрическую
+//РїРµСЂРµРІРѕРґРёС‚ РёР· РіРµР»РёРѕС†РµРЅС‚СЂРёС‡РµСЃРєРѕР№ РІ РїР»Р°РЅРµС‚РѕС†РµРЅС‚СЂРёС‡РµСЃРєСѓСЋ
 void eklekv(double ekl[], double ekv[])
 {	
 	ekv[0]=ekl[0];
@@ -650,7 +650,7 @@ void eklekv(double ekl[], double ekv[])
 	ekv[4]=ekl[4]*cos(eps)-ekl[5]*sin(eps);
 	ekv[5]=ekl[4]*sin(eps)+ekl[5]*cos(eps);
 }
-//переводит координаты из эклиптической системы в экваториальную
+//РїРµСЂРµРІРѕРґРёС‚ РєРѕРѕСЂРґРёРЅР°С‚С‹ РёР· СЌРєР»РёРїС‚РёС‡РµСЃРєРѕР№ СЃРёСЃС‚РµРјС‹ РІ СЌРєРІР°С‚РѕСЂРёР°Р»СЊРЅСѓСЋ
 void ekvekl(double ekl[],double ekv[])
 {
 	ekl[0]=ekv[0];
@@ -660,7 +660,7 @@ void ekvekl(double ekl[],double ekv[])
 	ekl[4]=ekv[4]*cos(eps)+ekv[5]*sin(eps);
 	ekl[5]=-ekv[4]*sin(eps)+ekv[5]*cos(eps);
  }
-//переводит координаты из экваториальной системы в эклиптическую
+//РїРµСЂРµРІРѕРґРёС‚ РєРѕРѕСЂРґРёРЅР°С‚С‹ РёР· СЌРєРІР°С‚РѕСЂРёР°Р»СЊРЅРѕР№ СЃРёСЃС‚РµРјС‹ РІ СЌРєР»РёРїС‚РёС‡РµСЃРєСѓСЋ
 void h_a(string name_num, double jd0, double alfa, double del, int&h_grad, int&h_min, double&h_sec, int&a_grad, int&a_min, double&a_sec)
 {double hh;
 string str_spisok=read_observatory(name_num);
@@ -713,7 +713,7 @@ a_grad=int(grad_a);
 a_min=int((grad_a-a_grad)*60);
 a_sec=((grad_a-a_grad)*60-a_min)*60;
 }
-//перевод вторую экваториальную систему в горизонтальную
+//РїРµСЂРµРІРѕРґ РІС‚РѕСЂСѓСЋ СЌРєРІР°С‚РѕСЂРёР°Р»СЊРЅСѓСЋ СЃРёСЃС‚РµРјСѓ РІ РіРѕСЂРёР·РѕРЅС‚Р°Р»СЊРЅСѓСЋ
 void XYZ_boul(string name_asteroid)
 { string str;
   str=read_boul(name_asteroid);
@@ -753,7 +753,7 @@ void XYZ_boul(string name_asteroid)
   VX_boul=(X_boul/r_boul)*VR_boul+(-su_boul*cos(knot_boul)-cu_boul*sin(knot_boul)*cos(i_boul))*VN_boul;
   VY_boul=(Y_boul/r_boul)*VR_boul+(-su_boul*sin(knot_boul)+cu_boul*cos(knot_boul)*cos(i_boul))*VN_boul;
   VZ_boul=(Z_boul/r_boul)*VR_boul+cu_boul*sin(i_boul)*VN_boul;}
-//переводит из Кеплеровых элементов в прямоугольные
+//РїРµСЂРµРІРѕРґРёС‚ РёР· РљРµРїР»РµСЂРѕРІС‹С… СЌР»РµРјРµРЅС‚РѕРІ РІ РїСЂСЏРјРѕСѓРіРѕР»СЊРЅС‹Рµ
 void force(double *X, double *V, double TS,double *F, DeAcsessor^ acs)
 	{
 	double r[4]; int i, j;
@@ -899,7 +899,7 @@ void force(double *X, double *V, double TS,double *F, DeAcsessor^ acs)
 	  F[jjj+12+3*force_var[11]]=GMA[2][0]*X[kkk+3*force_var[11]]+GMA[2][1]*X[kkk+6+3*force_var[11]]+GMA[2][2]*X[kkk+12+3*force_var[11]];
 	  jjj++;}}
 	}
-//правые части
+//РїСЂР°РІС‹Рµ С‡Р°СЃС‚Рё
 int radamaker(double *X, double  *V, double TF, DeAcsessor^ acs)
 {int j, k, l, m, n, j2, la, jdm;
  double *be_g_ptr, *be_ptr, *be_i_ptr, *b_g_ptr, *b_ptr, *b_i_ptr, *bt_g_ptr, *bt_ptr, *w_ptr, *u_ptr, *r_ptr, *c_ptr;
@@ -1144,14 +1144,14 @@ int count=0;
   radius_vremia=sqrt((X[0]-poz1[0])*(X[0]-poz1[0])+(X[1]-poz1[1])*(X[1]-poz1[1])+(X[2]-poz1[2])*(X[2]-poz1[2]))/cc;
   count=count+1;}
  time_abb=JD0;}
-//производит учет абберации
+//РїСЂРѕРёР·РІРѕРґРёС‚ СѓС‡РµС‚ Р°Р±Р±РµСЂР°С†РёРё
 void flat_to_sphere(double *X)
 {       rad=sqrt(X[0]*X[0]+X[1]*X[1]+X[2]*X[2]);
 		delta=asin(X[2]/rad);
 		alpha=atan(X[1]/X[0]);
 		if(sin(alpha)*X[1]<0)
 		{alpha=alpha+M_PI;}}
-//переводит прямоугольные координаты в сферические
+//РїРµСЂРµРІРѕРґРёС‚ РїСЂСЏРјРѕСѓРіРѕР»СЊРЅС‹Рµ РєРѕРѕСЂРґРёРЅР°С‚С‹ РІ СЃС„РµСЂРёС‡РµСЃРєРёРµ
 void flat_to_Kepler(double *X, double *V)
 {       double m=2.959122082855911025e-4,
 			   r=sqrt(X[0]*X[0]+X[1]*X[1]+X[2]*X[2]),
@@ -1175,7 +1175,7 @@ void flat_to_Kepler(double *X, double *V)
 			   cose=(cos(u-knot_Kepler)+e_Kepler)/(1+e_Kepler*cos(u-knot_Kepler)),
 			   E=u-knot_Kepler+atan((sine*cos(u-knot_Kepler)-cose*sin(u-knot_Kepler))/(cose*cos(u-cos(u-knot_Kepler+sine*sin(u-knot_Kepler)))));
 		M_Kepler=E-e_Kepler*sine;}
-//переводит прямоугольные координаты в Кеплеровы элементы
+//РїРµСЂРµРІРѕРґРёС‚ РїСЂСЏРјРѕСѓРіРѕР»СЊРЅС‹Рµ РєРѕРѕСЂРґРёРЅР°С‚С‹ РІ РљРµРїР»РµСЂРѕРІС‹ СЌР»РµРјРµРЅС‚С‹
 void inversion(double A[6][6], int N)
 {
     double temp;
@@ -1214,7 +1214,7 @@ void inversion(double A[6][6], int N)
         delete [] E[i]; 
     delete [] E;
 }
- // обращение матрицы
+ // РѕР±СЂР°С‰РµРЅРёРµ РјР°С‚СЂРёС†С‹
 void ephemerida(double *X, double *V, double ephem, double JD0, string num_obs, DeAcsessor^ acs)
 {
 double moment_of_time=0, T0=0, ST, coor_obs[3], spi, gamma, alpha1, delta1;
@@ -1266,7 +1266,7 @@ coor_obs[2]=names_hren(str_spisok);
  d_delta_eph=int(delta1);
  m_delta_eph=int((delta1-d_delta_eph)*60);
  s_delta_eph=((delta1-d_delta_eph)*60-m_delta_eph)*60;}
-//расчет эфемерид
+//СЂР°СЃС‡РµС‚ СЌС„РµРјРµСЂРёРґ
 void ephemerida(double *X, double *V, double ephem, double JD0, string num_obs, double s_n[],double s_x[],double s_y[],double s_z[], int number_obs, DeAcsessor^ acs)
 {
 	
@@ -1333,7 +1333,7 @@ for(cis=0; cis<nv; cis++)
  m_delta_eph=int((delta1-d_delta_eph)*60);
  s_delta_eph=((delta1-d_delta_eph)*60-m_delta_eph)*60;
  }
-//расчет эфемерид для улучшения
+//СЂР°СЃС‡РµС‚ СЌС„РµРјРµСЂРёРґ РґР»СЏ СѓР»СѓС‡С€РµРЅРёСЏ
 double average_moment (double data_moment [], int number)
 {double target;
  double sum=0;
@@ -1342,7 +1342,7 @@ double average_moment (double data_moment [], int number)
  target=sum/number;
  return target;
 }
-//вычисление среднего момента времени
+//РІС‹С‡РёСЃР»РµРЅРёРµ СЃСЂРµРґРЅРµРіРѕ РјРѕРјРµРЅС‚Р° РІСЂРµРјРµРЅРё
 void improve_elements(double in_X[], double in_V[], double time, double data_ul[], double del[], double al[], string obs[], int count, double s_n[],double s_x[],double s_y[],double s_z[], DeAcsessor^ acs)
 {double epher[5000];
  double aaa[30000][6];
@@ -1555,7 +1555,7 @@ fout15<<aa2[i][0]<<" "<<aa2[i][1]<<" "<<aa2[i][2]<<" "<<aa2[i][3]<<" "<<aa2[i][4
  fout15.close();
  fout16.close();
 }
-//улучшение элементов орбит
+//СѓР»СѓС‡С€РµРЅРёРµ СЌР»РµРјРµРЅС‚РѕРІ РѕСЂР±РёС‚
 void improve_elements(double in_X[], double in_V[], double time, double data_ul[], double del[], double al[], string obs[], int count, double s_n[],double s_x[],double s_y[],double s_z[], double sigma_im, DeAcsessor^ acs)
 {
 	double epher[5000];
@@ -1851,7 +1851,7 @@ void improve_elements(double in_X[], double in_V[], double time, double data_ul[
 	fout15.close();
 	fout16.close();
 }
-//улучшение элементов орбит c отбраковкой
+//СѓР»СѓС‡С€РµРЅРёРµ СЌР»РµРјРµРЅС‚РѕРІ РѕСЂР±РёС‚ c РѕС‚Р±СЂР°РєРѕРІРєРѕР№
 double magnitude_observ(double XM[3], double abs_magnitude, double GM, double epher_time_mag, DeAcsessor^ acs)
 {
 	double magnitude_observ;
@@ -1903,7 +1903,7 @@ double magnitude_observ(double XM[3], double abs_magnitude, double GM, double ep
 
 	return magnitude_observ;
 }
-//вычисление видимой звездной величины
+//РІС‹С‡РёСЃР»РµРЅРёРµ РІРёРґРёРјРѕР№ Р·РІРµР·РґРЅРѕР№ РІРµР»РёС‡РёРЅС‹
 void domain (double magnitude_d, double G_d, double domain_time, string num_obs, DeAcsessor^ acs)
 {
 	double covar_d[6][6], improve_time, coor_d[30], vel_d[30];
@@ -2011,12 +2011,12 @@ void domain (double magnitude_d, double G_d, double domain_time, string num_obs,
 		delta_dom=sqrt(C22)*206265;
 	}
 }
-//вычисление доверительной области линейным методом
+//РІС‹С‡РёСЃР»РµРЅРёРµ РґРѕРІРµСЂРёС‚РµР»СЊРЅРѕР№ РѕР±Р»Р°СЃС‚Рё Р»РёРЅРµР№РЅС‹Рј РјРµС‚РѕРґРѕРј
 double to_rad(double d)
 {
 	return d*M_PI / 180;
 }
-//в радианы
+//РІ СЂР°РґРёР°РЅС‹
 double metric(Asteroid ast1, Asteroid ast2)
 {
 	double m, cosi, p1, p2, cosp;
@@ -2027,35 +2027,35 @@ double metric(Asteroid ast1, Asteroid ast2)
 	m = (1 + pow(ast1.e, 2))*ast1.p + (1 + pow(ast2.e, 2))*ast2.p - 2 * sqrt(ast1.p*ast2.p)*(cosi + ast1.e*ast2.e*cosp);
 	return m;
 }
-//вычисление метрики
+//РІС‹С‡РёСЃР»РµРЅРёРµ РјРµС‚СЂРёРєРё
 
 /*
 int main(void)
 {
 
-	//порядок интегратора
+	//РїРѕСЂСЏРґРѕРє РёРЅС‚РµРіСЂР°С‚РѕСЂР°
 	nor=19;
 
-//точность интегратора
+//С‚РѕС‡РЅРѕСЃС‚СЊ РёРЅС‚РµРіСЂР°С‚РѕСЂР°
 	ll=11;
 
-//настройка модели сил
-	force_var[0]=1; //Меркурий
-	force_var[1]=1; //Венера
-	force_var[2]=1; //Земля
-	force_var[3]=1; //Марс
-	force_var[4]=1; //Юпитер
-	force_var[5]=1; //Сатурн
-	force_var[6]=1; //Уран
-	force_var[7]=1; //Нептун
-	force_var[8]=1; //Плутон
-	force_var[9]=1; //Луна
-	force_var[10]=1; //Солнце
-	force_var[11]=0; //Церера, Паллада, Веста
-	force_var[12]=1; //Сжатие Земли
-	force_var[13]=1; //Сжатие Солнца
-	force_var[14]=1; //Релятивистские эффекты
-	force_var[15]=1; //Сжатие Юпитера
+//РЅР°СЃС‚СЂРѕР№РєР° РјРѕРґРµР»Рё СЃРёР»
+	force_var[0]=1; //РњРµСЂРєСѓСЂРёР№
+	force_var[1]=1; //Р’РµРЅРµСЂР°
+	force_var[2]=1; //Р—РµРјР»СЏ
+	force_var[3]=1; //РњР°СЂСЃ
+	force_var[4]=1; //Р®РїРёС‚РµСЂ
+	force_var[5]=1; //РЎР°С‚СѓСЂРЅ
+	force_var[6]=1; //РЈСЂР°РЅ
+	force_var[7]=1; //РќРµРїС‚СѓРЅ
+	force_var[8]=1; //РџР»СѓС‚РѕРЅ
+	force_var[9]=1; //Р›СѓРЅР°
+	force_var[10]=1; //РЎРѕР»РЅС†Рµ
+	force_var[11]=0; //Р¦РµСЂРµСЂР°, РџР°Р»Р»Р°РґР°, Р’РµСЃС‚Р°
+	force_var[12]=1; //РЎР¶Р°С‚РёРµ Р—РµРјР»Рё
+	force_var[13]=1; //РЎР¶Р°С‚РёРµ РЎРѕР»РЅС†Р°
+	force_var[14]=1; //Р РµР»СЏС‚РёРІРёСЃС‚СЃРєРёРµ СЌС„С„РµРєС‚С‹
+	force_var[15]=1; //РЎР¶Р°С‚РёРµ Р®РїРёС‚РµСЂР°
 
 	nclass=2, ni=2, nv=3+9*force_var[11], xl=1.0e-9;
 
@@ -2078,29 +2078,29 @@ return(0);}
 /*
 int main()
 {
-	//порядок интегратора
+	//РїРѕСЂСЏРґРѕРє РёРЅС‚РµРіСЂР°С‚РѕСЂР°
 	nor = 15;
 
-	//точность интегратора
+	//С‚РѕС‡РЅРѕСЃС‚СЊ РёРЅС‚РµРіСЂР°С‚РѕСЂР°
 	ll = 11;
 
-	//настройка модели сил
-	force_var[0] = 1; //Меркурий
-	force_var[1] = 1; //Венера
-	force_var[2] = 1; //Земля
-	force_var[3] = 1; //Марс
-	force_var[4] = 1; //Юпитер
-	force_var[5] = 1; //Сатурн
-	force_var[6] = 1; //Уран
-	force_var[7] = 1; //Нептун
-	force_var[8] = 1; //Плутон
-	force_var[9] = 1; //Луна
-	force_var[10] = 1; //Солнце
-	force_var[11] = 0; //Церера, Паллада, Веста
-	force_var[12] = 1; //Сжатие Земли
-	force_var[13] = 1; //Сжатие Солнца
-	force_var[14] = 1; //Релятивистские эффекты
-	force_var[15] = 0; //Сжатие Юпитера
+	//РЅР°СЃС‚СЂРѕР№РєР° РјРѕРґРµР»Рё СЃРёР»
+	force_var[0] = 1; //РњРµСЂРєСѓСЂРёР№
+	force_var[1] = 1; //Р’РµРЅРµСЂР°
+	force_var[2] = 1; //Р—РµРјР»СЏ
+	force_var[3] = 1; //РњР°СЂСЃ
+	force_var[4] = 1; //Р®РїРёС‚РµСЂ
+	force_var[5] = 1; //РЎР°С‚СѓСЂРЅ
+	force_var[6] = 1; //РЈСЂР°РЅ
+	force_var[7] = 1; //РќРµРїС‚СѓРЅ
+	force_var[8] = 1; //РџР»СѓС‚РѕРЅ
+	force_var[9] = 1; //Р›СѓРЅР°
+	force_var[10] = 1; //РЎРѕР»РЅС†Рµ
+	force_var[11] = 0; //Р¦РµСЂРµСЂР°, РџР°Р»Р»Р°РґР°, Р’РµСЃС‚Р°
+	force_var[12] = 1; //РЎР¶Р°С‚РёРµ Р—РµРјР»Рё
+	force_var[13] = 1; //РЎР¶Р°С‚РёРµ РЎРѕР»РЅС†Р°
+	force_var[14] = 1; //Р РµР»СЏС‚РёРІРёСЃС‚СЃРєРёРµ СЌС„С„РµРєС‚С‹
+	force_var[15] = 0; //РЎР¶Р°С‚РёРµ Р®РїРёС‚РµСЂР°
 
 	nclass = 2, ni = 2, nv = 3 + 9 * force_var[11], xl = 1.0e-9;
 
@@ -2177,33 +2177,33 @@ int main()
 	return 0;
 }
 */
-// мейн с улучшением для постройки областей, этот старый!!
+// РјРµР№РЅ СЃ СѓР»СѓС‡С€РµРЅРёРµРј РґР»СЏ РїРѕСЃС‚СЂРѕР№РєРё РѕР±Р»Р°СЃС‚РµР№, СЌС‚РѕС‚ СЃС‚Р°СЂС‹Р№!!
 
 /*
 int main(array<System::String ^> ^args)
 {
-   //порядок интегратора
+   //РїРѕСЂСЏРґРѕРє РёРЅС‚РµРіСЂР°С‚РѕСЂР°
   nor=19;
 
-  //точность интегратора
+  //С‚РѕС‡РЅРѕСЃС‚СЊ РёРЅС‚РµРіСЂР°С‚РѕСЂР°
   ll=14;
 
-  //настройка модели сил
-  force_var[0]=1; //Меркурий
-  force_var[1]=1; //Венера
-  force_var[2]=1; //Земля
-  force_var[3]=1; //Марс
-  force_var[4]=1; //Юпитер
-  force_var[5]=1; //Сатурн
-  force_var[6]=1; //Уран
-  force_var[7]=1; //Нептун
-  force_var[8]=1; //Плутон
-  force_var[9]=1; //Луна
-  force_var[10]=1; //Солнце
-  force_var[11]=0; //Церера, Паллада, Веста
-  force_var[12]=1; //Сжатие Земли
-  force_var[13]=1; //Сжатие Солнца
-  force_var[14]=1; //Релятивистские эффекты
+  //РЅР°СЃС‚СЂРѕР№РєР° РјРѕРґРµР»Рё СЃРёР»
+  force_var[0]=1; //РњРµСЂРєСѓСЂРёР№
+  force_var[1]=1; //Р’РµРЅРµСЂР°
+  force_var[2]=1; //Р—РµРјР»СЏ
+  force_var[3]=1; //РњР°СЂСЃ
+  force_var[4]=1; //Р®РїРёС‚РµСЂ
+  force_var[5]=1; //РЎР°С‚СѓСЂРЅ
+  force_var[6]=1; //РЈСЂР°РЅ
+  force_var[7]=1; //РќРµРїС‚СѓРЅ
+  force_var[8]=1; //РџР»СѓС‚РѕРЅ
+  force_var[9]=1; //Р›СѓРЅР°
+  force_var[10]=1; //РЎРѕР»РЅС†Рµ
+  force_var[11]=0; //Р¦РµСЂРµСЂР°, РџР°Р»Р»Р°РґР°, Р’РµСЃС‚Р°
+  force_var[12]=1; //РЎР¶Р°С‚РёРµ Р—РµРјР»Рё
+  force_var[13]=1; //РЎР¶Р°С‚РёРµ РЎРѕР»РЅС†Р°
+  force_var[14]=1; //Р РµР»СЏС‚РёРІРёСЃС‚СЃРєРёРµ СЌС„С„РµРєС‚С‹
 
   nclass=2, ni=2, nv=3+9*force_var[11], xl=1.0e-9;
 
@@ -2276,32 +2276,32 @@ int main(array<System::String ^> ^args)
 	return 0;
 }
 */
-//мейн для эфемерид
+//РјРµР№РЅ РґР»СЏ СЌС„РµРјРµСЂРёРґ
 
 /*int main (array<System::String ^> ^args)
 {
-   //порядок интегратора
+   //РїРѕСЂСЏРґРѕРє РёРЅС‚РµРіСЂР°С‚РѕСЂР°
   nor=19;
 
-  //точность интегратора
+  //С‚РѕС‡РЅРѕСЃС‚СЊ РёРЅС‚РµРіСЂР°С‚РѕСЂР°
   ll=11;
 
-  //настройка модели сил
-  force_var[0]=1; //Меркурий
-  force_var[1]=1; //Венера
-  force_var[2]=1; //Земля
-  force_var[3]=1; //Марс
-  force_var[4]=1; //Юпитер
-  force_var[5]=1; //Сатурн
-  force_var[6]=1; //Уран
-  force_var[7]=1; //Нептун
-  force_var[8]=1; //Плутон
-  force_var[9]=1; //Луна
-  force_var[10]=1; //Солнце
-  force_var[11]=0; //Церера, Паллада, Веста
-  force_var[12]=1; //Сжатие Земли
-  force_var[13]=1; //Сжатие Солнца
-  force_var[14]=1; //Релятивистские эффекты
+  //РЅР°СЃС‚СЂРѕР№РєР° РјРѕРґРµР»Рё СЃРёР»
+  force_var[0]=1; //РњРµСЂРєСѓСЂРёР№
+  force_var[1]=1; //Р’РµРЅРµСЂР°
+  force_var[2]=1; //Р—РµРјР»СЏ
+  force_var[3]=1; //РњР°СЂСЃ
+  force_var[4]=1; //Р®РїРёС‚РµСЂ
+  force_var[5]=1; //РЎР°С‚СѓСЂРЅ
+  force_var[6]=1; //РЈСЂР°РЅ
+  force_var[7]=1; //РќРµРїС‚СѓРЅ
+  force_var[8]=1; //РџР»СѓС‚РѕРЅ
+  force_var[9]=1; //Р›СѓРЅР°
+  force_var[10]=1; //РЎРѕР»РЅС†Рµ
+  force_var[11]=0; //Р¦РµСЂРµСЂР°, РџР°Р»Р»Р°РґР°, Р’РµСЃС‚Р°
+  force_var[12]=1; //РЎР¶Р°С‚РёРµ Р—РµРјР»Рё
+  force_var[13]=1; //РЎР¶Р°С‚РёРµ РЎРѕР»РЅС†Р°
+  force_var[14]=1; //Р РµР»СЏС‚РёРІРёСЃС‚СЃРєРёРµ СЌС„С„РµРєС‚С‹
 
   nclass=2, ni=2, nv=3+9*force_var[11], xl=1.0e-9;
 
@@ -2386,33 +2386,33 @@ int main(array<System::String ^> ^args)
 	}
 }
 
-//мейн для оппозиций
+//РјРµР№РЅ РґР»СЏ РѕРїРїРѕР·РёС†РёР№
 
 /*
 	int main(array<System::String ^> ^args)
 {
-   //порядок интегратора
+   //РїРѕСЂСЏРґРѕРє РёРЅС‚РµРіСЂР°С‚РѕСЂР°
   nor=19;
 
-  //точность интегратора
+  //С‚РѕС‡РЅРѕСЃС‚СЊ РёРЅС‚РµРіСЂР°С‚РѕСЂР°
   ll=11;
 
-  //настройка модели сил
-  force_var[0]=1; //Меркурий
-  force_var[1]=1; //Венера
-  force_var[2]=1; //Земля
-  force_var[3]=1; //Марс
-  force_var[4]=1; //Юпитер
-  force_var[5]=1; //Сатурн
-  force_var[6]=1; //Уран
-  force_var[7]=1; //Нептун
-  force_var[8]=1; //Плутон
-  force_var[9]=1; //Луна
-  force_var[10]=1; //Солнце
-  force_var[11]=0; //Церера, Паллада, Веста
-  force_var[12]=1; //Сжатие Земли
-  force_var[13]=1; //Сжатие Солнца
-  force_var[14]=1; //Релятивистские эффекты
+  //РЅР°СЃС‚СЂРѕР№РєР° РјРѕРґРµР»Рё СЃРёР»
+  force_var[0]=1; //РњРµСЂРєСѓСЂРёР№
+  force_var[1]=1; //Р’РµРЅРµСЂР°
+  force_var[2]=1; //Р—РµРјР»СЏ
+  force_var[3]=1; //РњР°СЂСЃ
+  force_var[4]=1; //Р®РїРёС‚РµСЂ
+  force_var[5]=1; //РЎР°С‚СѓСЂРЅ
+  force_var[6]=1; //РЈСЂР°РЅ
+  force_var[7]=1; //РќРµРїС‚СѓРЅ
+  force_var[8]=1; //РџР»СѓС‚РѕРЅ
+  force_var[9]=1; //Р›СѓРЅР°
+  force_var[10]=1; //РЎРѕР»РЅС†Рµ
+  force_var[11]=0; //Р¦РµСЂРµСЂР°, РџР°Р»Р»Р°РґР°, Р’РµСЃС‚Р°
+  force_var[12]=1; //РЎР¶Р°С‚РёРµ Р—РµРјР»Рё
+  force_var[13]=1; //РЎР¶Р°С‚РёРµ РЎРѕР»РЅС†Р°
+  force_var[14]=1; //Р РµР»СЏС‚РёРІРёСЃС‚СЃРєРёРµ СЌС„С„РµРєС‚С‹
 
   nclass=2, ni=2, nv=3+9*force_var[11], xl=1.0e-9;
 
@@ -2484,31 +2484,31 @@ int main(array<System::String ^> ^args)
 
 */
 
-//мейн для видимости
+//РјРµР№РЅ РґР»СЏ РІРёРґРёРјРѕСЃС‚Рё
 /*int main()
 {
-	//порядок интегратора
+	//РїРѕСЂСЏРґРѕРє РёРЅС‚РµРіСЂР°С‚РѕСЂР°
 	nor = 19;
 
-	//точность интегратора
+	//С‚РѕС‡РЅРѕСЃС‚СЊ РёРЅС‚РµРіСЂР°С‚РѕСЂР°
 	ll = 11;
 
-	//настройка модели сил
-	force_var[0] = 1; //Меркурий
-	force_var[1] = 1; //Венера
-	force_var[2] = 1; //Земля
-	force_var[3] = 1; //Марс
-	force_var[4] = 1; //Юпитер
-	force_var[5] = 1; //Сатурн
-	force_var[6] = 1; //Уран
-	force_var[7] = 1; //Нептун
-	force_var[8] = 1; //Плутон
-	force_var[9] = 1; //Луна
-	force_var[10] = 1; //Солнце
-	force_var[11] = 0; //Церера, Паллада, Веста
-	force_var[12] = 1; //Сжатие Земли
-	force_var[13] = 1; //Сжатие Солнца
-	force_var[14] = 1; //Релятивистские эффекты
+	//РЅР°СЃС‚СЂРѕР№РєР° РјРѕРґРµР»Рё СЃРёР»
+	force_var[0] = 1; //РњРµСЂРєСѓСЂРёР№
+	force_var[1] = 1; //Р’РµРЅРµСЂР°
+	force_var[2] = 1; //Р—РµРјР»СЏ
+	force_var[3] = 1; //РњР°СЂСЃ
+	force_var[4] = 1; //Р®РїРёС‚РµСЂ
+	force_var[5] = 1; //РЎР°С‚СѓСЂРЅ
+	force_var[6] = 1; //РЈСЂР°РЅ
+	force_var[7] = 1; //РќРµРїС‚СѓРЅ
+	force_var[8] = 1; //РџР»СѓС‚РѕРЅ
+	force_var[9] = 1; //Р›СѓРЅР°
+	force_var[10] = 1; //РЎРѕР»РЅС†Рµ
+	force_var[11] = 0; //Р¦РµСЂРµСЂР°, РџР°Р»Р»Р°РґР°, Р’РµСЃС‚Р°
+	force_var[12] = 1; //РЎР¶Р°С‚РёРµ Р—РµРјР»Рё
+	force_var[13] = 1; //РЎР¶Р°С‚РёРµ РЎРѕР»РЅС†Р°
+	force_var[14] = 1; //Р РµР»СЏС‚РёРІРёСЃС‚СЃРєРёРµ СЌС„С„РµРєС‚С‹
 
 	string s1 = "2000 SH89";
 	string str_cat1;
@@ -2547,34 +2547,34 @@ int main(array<System::String ^> ^args)
 	domain(mag1, g1,date,"500", acs);
 	return 0;
 }*/
-//Ирина
+//РСЂРёРЅР°
 
 int main()
 {
-	//порядок интегратора
+	//РїРѕСЂСЏРґРѕРє РёРЅС‚РµРіСЂР°С‚РѕСЂР°
 	nor = 19;
 
-	//точность интегратора
+	//С‚РѕС‡РЅРѕСЃС‚СЊ РёРЅС‚РµРіСЂР°С‚РѕСЂР°
 	ll = 11;
 
-	//настройка модели сил
-	force_var[0] = 1; //Меркурий
-	force_var[1] = 1; //Венера
-	force_var[2] = 1; //Земля
+	//РЅР°СЃС‚СЂРѕР№РєР° РјРѕРґРµР»Рё СЃРёР»
+	force_var[0] = 1; //РњРµСЂРєСѓСЂРёР№
+	force_var[1] = 1; //Р’РµРЅРµСЂР°
+	force_var[2] = 1; //Р—РµРјР»СЏ
 
-	force_var[3] = 1; //Марс
-	force_var[4] = 1; //Юпитер
-	force_var[5] = 1; //Сатурн
-	force_var[6] = 1; //Уран
-	force_var[7] = 1; //Нептун
-	force_var[8] = 1; //Плутон
-	force_var[9] = 1; //Луна
-	force_var[10] = 1; //Солнце
-	force_var[11] = 0; //Церера, Паллада, Веста
-	force_var[12] = 1; //Сжатие Земли
-	force_var[13] = 1; //Сжатие Солнца
-	force_var[14] = 1; //Релятивистские эффекты
-	force_var[15] = 0; //Сжатие Юпитера
+	force_var[3] = 1; //РњР°СЂСЃ
+	force_var[4] = 1; //Р®РїРёС‚РµСЂ
+	force_var[5] = 1; //РЎР°С‚СѓСЂРЅ
+	force_var[6] = 1; //РЈСЂР°РЅ
+	force_var[7] = 1; //РќРµРїС‚СѓРЅ
+	force_var[8] = 1; //РџР»СѓС‚РѕРЅ
+	force_var[9] = 1; //Р›СѓРЅР°
+	force_var[10] = 1; //РЎРѕР»РЅС†Рµ
+	force_var[11] = 0; //Р¦РµСЂРµСЂР°, РџР°Р»Р»Р°РґР°, Р’РµСЃС‚Р°
+	force_var[12] = 1; //РЎР¶Р°С‚РёРµ Р—РµРјР»Рё
+	force_var[13] = 1; //РЎР¶Р°С‚РёРµ РЎРѕР»РЅС†Р°
+	force_var[14] = 1; //Р РµР»СЏС‚РёРІРёСЃС‚СЃРєРёРµ СЌС„С„РµРєС‚С‹
+	force_var[15] = 0; //РЎР¶Р°С‚РёРµ Р®РїРёС‚РµСЂР°
 	nclass = 2, ni = 2, nv = 3 + 9 * force_var[11], xl = 1.0e-9;
 
 	string str_obs = "";
@@ -2634,7 +2634,7 @@ int main()
 
 }
 
-//метрика номинальная орбита
+//РјРµС‚СЂРёРєР° РЅРѕРјРёРЅР°Р»СЊРЅР°СЏ РѕСЂР±РёС‚Р°
 /*
 int main()
 {
@@ -2642,29 +2642,29 @@ int main()
 	while (1) {
 
 		cout << i << endl;
-		//порядок интегратора
+		//РїРѕСЂСЏРґРѕРє РёРЅС‚РµРіСЂР°С‚РѕСЂР°
 		nor = 15;
 
-		//точность интегратора
+		//С‚РѕС‡РЅРѕСЃС‚СЊ РёРЅС‚РµРіСЂР°С‚РѕСЂР°
 		ll = 11;
 
-		//настройка модели сил
-		force_var[0] = 1; //Меркурий
-		force_var[1] = 1; //Венера
-		force_var[2] = 1; //Земля
-		force_var[3] = 1; //Марс
-		force_var[4] = 1; //Юпитер
-		force_var[5] = 1; //Сатурн
-		force_var[6] = 1; //Уран
-		force_var[7] = 1; //Нептун
-		force_var[8] = 1; //Плутон
-		force_var[9] = 1; //Луна
-		force_var[10] = 1; //Солнце
-		force_var[11] = 0; //Церера, Паллада, Веста
-		force_var[12] = 1; //Сжатие Земли
-		force_var[13] = 1; //Сжатие Солнца
-		force_var[14] = 1; //Релятивистские эффекты
-		force_var[15] = 0; //Сжатие Юпитера
+		//РЅР°СЃС‚СЂРѕР№РєР° РјРѕРґРµР»Рё СЃРёР»
+		force_var[0] = 1; //РњРµСЂРєСѓСЂРёР№
+		force_var[1] = 1; //Р’РµРЅРµСЂР°
+		force_var[2] = 1; //Р—РµРјР»СЏ
+		force_var[3] = 1; //РњР°СЂСЃ
+		force_var[4] = 1; //Р®РїРёС‚РµСЂ
+		force_var[5] = 1; //РЎР°С‚СѓСЂРЅ
+		force_var[6] = 1; //РЈСЂР°РЅ
+		force_var[7] = 1; //РќРµРїС‚СѓРЅ
+		force_var[8] = 1; //РџР»СѓС‚РѕРЅ
+		force_var[9] = 1; //Р›СѓРЅР°
+		force_var[10] = 1; //РЎРѕР»РЅС†Рµ
+		force_var[11] = 0; //Р¦РµСЂРµСЂР°, РџР°Р»Р»Р°РґР°, Р’РµСЃС‚Р°
+		force_var[12] = 1; //РЎР¶Р°С‚РёРµ Р—РµРјР»Рё
+		force_var[13] = 1; //РЎР¶Р°С‚РёРµ РЎРѕР»РЅС†Р°
+		force_var[14] = 1; //Р РµР»СЏС‚РёРІРёСЃС‚СЃРєРёРµ СЌС„С„РµРєС‚С‹
+		force_var[15] = 0; //РЎР¶Р°С‚РёРµ Р®РїРёС‚РµСЂР°
 
 		nclass = 2, ni = 2, nv = 3 + 9 * force_var[11], xl = 1.0e-9;
 
@@ -2818,34 +2818,34 @@ int main()
 	return 0;
 }
 */
-//вычисление метрики, второй. +перезапись файла времени
+//РІС‹С‡РёСЃР»РµРЅРёРµ РјРµС‚СЂРёРєРё, РІС‚РѕСЂРѕР№. +РїРµСЂРµР·Р°РїРёСЃСЊ С„Р°Р№Р»Р° РІСЂРµРјРµРЅРё
 
 /*
 int main()
 {
-		//порядок интегратора
+		//РїРѕСЂСЏРґРѕРє РёРЅС‚РµРіСЂР°С‚РѕСЂР°
 		nor = 15;
 
-		//точность интегратора
+		//С‚РѕС‡РЅРѕСЃС‚СЊ РёРЅС‚РµРіСЂР°С‚РѕСЂР°
 		ll = 11;
 
-		//настройка модели сил
-		force_var[0] = 1; //Меркурий
-		force_var[1] = 1; //Венера
-		force_var[2] = 1; //Земля
-		force_var[3] = 1; //Марс
-		force_var[4] = 1; //Юпитер
-		force_var[5] = 1; //Сатурн
-		force_var[6] = 1; //Уран
-		force_var[7] = 1; //Нептун
-		force_var[8] = 1; //Плутон
-		force_var[9] = 1; //Луна
-		force_var[10] = 1; //Солнце
-		force_var[11] = 0; //Церера, Паллада, Веста
-		force_var[12] = 1; //Сжатие Земли
-		force_var[13] = 1; //Сжатие Солнца
-		force_var[14] = 1; //Релятивистские эффекты
-		force_var[15] = 0; //Сжатие Юпитера
+		//РЅР°СЃС‚СЂРѕР№РєР° РјРѕРґРµР»Рё СЃРёР»
+		force_var[0] = 1; //РњРµСЂРєСѓСЂРёР№
+		force_var[1] = 1; //Р’РµРЅРµСЂР°
+		force_var[2] = 1; //Р—РµРјР»СЏ
+		force_var[3] = 1; //РњР°СЂСЃ
+		force_var[4] = 1; //Р®РїРёС‚РµСЂ
+		force_var[5] = 1; //РЎР°С‚СѓСЂРЅ
+		force_var[6] = 1; //РЈСЂР°РЅ
+		force_var[7] = 1; //РќРµРїС‚СѓРЅ
+		force_var[8] = 1; //РџР»СѓС‚РѕРЅ
+		force_var[9] = 1; //Р›СѓРЅР°
+		force_var[10] = 1; //РЎРѕР»РЅС†Рµ
+		force_var[11] = 0; //Р¦РµСЂРµСЂР°, РџР°Р»Р»Р°РґР°, Р’РµСЃС‚Р°
+		force_var[12] = 1; //РЎР¶Р°С‚РёРµ Р—РµРјР»Рё
+		force_var[13] = 1; //РЎР¶Р°С‚РёРµ РЎРѕР»РЅС†Р°
+		force_var[14] = 1; //Р РµР»СЏС‚РёРІРёСЃС‚СЃРєРёРµ СЌС„С„РµРєС‚С‹
+		force_var[15] = 0; //РЎР¶Р°С‚РёРµ Р®РїРёС‚РµСЂР°
 
 		nclass = 2, ni = 2, nv = 3 + 9 * force_var[11], xl = 1.0e-9;
 
@@ -2939,33 +2939,33 @@ int main()
 	system("pause");
 }
 */
-//первый, постройка областей
+//РїРµСЂРІС‹Р№, РїРѕСЃС‚СЂРѕР№РєР° РѕР±Р»Р°СЃС‚РµР№
 /*
 int main()
 {
-	//порядок интегратора
+	//РїРѕСЂСЏРґРѕРє РёРЅС‚РµРіСЂР°С‚РѕСЂР°
 	nor = 15;
 
-	//точность интегратора
+	//С‚РѕС‡РЅРѕСЃС‚СЊ РёРЅС‚РµРіСЂР°С‚РѕСЂР°
 	ll = 11;
 
-	//настройка модели сил
-	force_var[0] = 1; //Меркурий
-	force_var[1] = 1; //Венера
-	force_var[2] = 1; //Земля
-	force_var[3] = 1; //Марс
-	force_var[4] = 1; //Юпитер
-	force_var[5] = 1; //Сатурн
-	force_var[6] = 1; //Уран
-	force_var[7] = 1; //Нептун
-	force_var[8] = 1; //Плутон
-	force_var[9] = 1; //Луна
-	force_var[10] = 1; //Солнце
-	force_var[11] = 0; //Церера, Паллада, Веста
-	force_var[12] = 1; //Сжатие Земли
-	force_var[13] = 1; //Сжатие Солнца
-	force_var[14] = 1; //Релятивистские эффекты
-	force_var[15] = 0; //Сжатие Юпитера
+	//РЅР°СЃС‚СЂРѕР№РєР° РјРѕРґРµР»Рё СЃРёР»
+	force_var[0] = 1; //РњРµСЂРєСѓСЂРёР№
+	force_var[1] = 1; //Р’РµРЅРµСЂР°
+	force_var[2] = 1; //Р—РµРјР»СЏ
+	force_var[3] = 1; //РњР°СЂСЃ
+	force_var[4] = 1; //Р®РїРёС‚РµСЂ
+	force_var[5] = 1; //РЎР°С‚СѓСЂРЅ
+	force_var[6] = 1; //РЈСЂР°РЅ
+	force_var[7] = 1; //РќРµРїС‚СѓРЅ
+	force_var[8] = 1; //РџР»СѓС‚РѕРЅ
+	force_var[9] = 1; //Р›СѓРЅР°
+	force_var[10] = 1; //РЎРѕР»РЅС†Рµ
+	force_var[11] = 0; //Р¦РµСЂРµСЂР°, РџР°Р»Р»Р°РґР°, Р’РµСЃС‚Р°
+	force_var[12] = 1; //РЎР¶Р°С‚РёРµ Р—РµРјР»Рё
+	force_var[13] = 1; //РЎР¶Р°С‚РёРµ РЎРѕР»РЅС†Р°
+	force_var[14] = 1; //Р РµР»СЏС‚РёРІРёСЃС‚СЃРєРёРµ СЌС„С„РµРєС‚С‹
+	force_var[15] = 0; //РЎР¶Р°С‚РёРµ Р®РїРёС‚РµСЂР°
 
 	nclass = 2, ni = 2, nv = 3 + 9 * force_var[11], xl = 1.0e-9;
 
@@ -3084,4 +3084,4 @@ int main()
 }
 */
 
-//второй, работает сразу с файлом где времени много, не работает
+//РІС‚РѕСЂРѕР№, СЂР°Р±РѕС‚Р°РµС‚ СЃСЂР°Р·Сѓ СЃ С„Р°Р№Р»РѕРј РіРґРµ РІСЂРµРјРµРЅРё РјРЅРѕРіРѕ, РЅРµ СЂР°Р±РѕС‚Р°РµС‚
